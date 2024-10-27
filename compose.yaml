@@ -1,7 +1,9 @@
 services:
   mailserver:
-    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    image: ghcr.io/mail-reputation/mail-server:latest
     network: full_stack_mailrep
+    environment:
+      - SSL_TYPE=letsencrypt
     container_name: mailserver
     # Provide the FQDN of your mail server here (Your DNS MX record should point to this value)
     hostname: mail.mymailreputation.com
@@ -20,6 +22,7 @@ services:
       - ./docker-data/dms/mail-logs/:/var/log/mail/
       - ./docker-data/dms/config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
+      - ./docker-data/dms/ssl/:/etc/letsencrypt/
     restart: always
     stop_grace_period: 1m
     # Uncomment if using `ENABLE_FAIL2BAN=1`:
