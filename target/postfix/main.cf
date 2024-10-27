@@ -23,6 +23,12 @@ recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = all
 
+# SMTP Retry Configuration
+maximal_queue_lifetime = 1h        # Max time before message is returned as undeliverable
+maximal_backoff_time = 15m        # Max time between retries
+minimal_backoff_time = 5m         # Min time between retries
+queue_run_delay = 5m              # How often the queue manager scans the queue
+
 # TLS parameters
 # These [snakeoil files actually exist](https://askubuntu.com/questions/396120/what-is-the-purpose-of-the-ssl-cert-snakeoil-key), but shouldn't ever be used in production!
 # If no `SSL_TYPE` env is set, "plaintext" is configured, but still accepts SSL with these:
@@ -33,6 +39,12 @@ smtpd_tls_security_level = may
 smtpd_tls_loglevel = 1
 smtp_tls_security_level = may
 smtp_tls_loglevel = 1
+
+# SMTP Retry Configuration
+maximal_queue_lifetime = 1h        # Max time before message is returned as undeliverable
+maximal_backoff_time = 15m        # Max time between retries
+minimal_backoff_time = 5m         # Min time between retries
+queue_run_delay = 5m    
 
 # Reduces CPU overhead with `NO_COMPRESSION`, SMTP not at risk of CRIME attack (see git blame for details)
 # Reduce opportunities for a potential CPU exhaustion attack with `NO_RENEGOTIATION`
