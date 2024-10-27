@@ -1,7 +1,7 @@
 services:
   mailserver:
     image: ghcr.io/mail-reputation/mail-server:latest
-    network: 
+    networks: 
       - full_stack_mailrep
     environment:
       - SSL_TYPE=letsencrypt
